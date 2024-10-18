@@ -40,56 +40,74 @@ public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 //inserts a new node after a specific position
     void insert_after(int value, int position) {
+        //check position
         if (position < 0) {
+            //error message if not
             cout << "Position must be >= 0." << endl;
+            //leave function
             return;
         }
-
+//new node with specific value
         Node* newNode = new Node(value);
+        //if list empty
         if (!head) {
+            //set head and tail to new node
             head = tail = newNode;
+            //leave function
             return;
         }
-
+//temporary pointer
         Node* temp = head;
+        //node at specifc position
         for (int i = 0; i < position && temp; ++i)
+        //next node
             temp = temp->next;
-
+//if position is more than size of list
         if (!temp) {
             cout << "Position exceeds list size. Node not inserted.\n";
+            //free memory
             delete newNode;
             return;
         }
-
+//new node after position
         newNode->next = temp->next;
+        //previous node to the current temp
         newNode->prev = temp;
+        //check if node after
         if (temp->next)
+        //set to new node
             temp->next->prev = newNode;
         else
+        //if no next node set tail to new node
             tail = newNode;
+            //set current to next
         temp->next = newNode;
     }
-
+//delete the first of a value
     void delete_val(int value) {
+        //if list empty stop
         if (!head) return;
-
+//set temporary
         Node* temp = head;
-        
+        //find specific node
         while (temp && temp->data != value)
             temp = temp->next;
-
+//if no value then leave
         if (!temp) return; 
-
+//if node not head
         if (temp->prev)
+        //set to the next one
             temp->prev->next = temp->next;
         else
+        //if head deleted set new one
             head = temp->next; 
-
+//if tail deleted set new one
         if (temp->next)
             temp->next->prev = temp->prev;
         else
+        //clean up memory
             tail = temp->prev; 
-
+//free up memory of deleted node
         delete temp;
     }
 
