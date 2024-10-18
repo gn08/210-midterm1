@@ -4,27 +4,41 @@
 #include <iostream>
 using namespace std;
 
+//set the constant minimum and maximum values
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
+//doubly linked list class
 class DoublyLinkedList {
 private:
+//node for the list
     struct Node {
+        //define data type
         int data;
+        //previous node in list
         Node* prev;
+        //next node in list
         Node* next;
+        //constructor to initialize node
         Node(int val, Node* p = nullptr, Node* n = nullptr) {
+            //set data to node
             data = val; 
+            //set pointer to previous
             prev = p;
+            //set pointer to next
             next = n;
         }
     };
-
+//pointer to begining of list
     Node* head;
+//pointer to end of list
     Node* tail;
 
 public:
+//constructor
+//set pointer to head
+//set pointer to tail
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
-
+//inserts a new node after a specific position
     void insert_after(int value, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
@@ -210,7 +224,7 @@ public:
         bool skip = false;
         while (current) {
             if(!skip){
-                cout << current -> data << "";
+                cout << current -> data << " ";
             }
             skip = !skip;
             current = current -> next;
@@ -228,7 +242,7 @@ int main() {
     list.push_back(4);
     list.push_back(5);
 
-    cout << "Every other: "
+    cout << "Every other: ";
     list.every_other_element();
 
     return 0;
