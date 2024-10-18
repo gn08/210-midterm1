@@ -220,10 +220,16 @@ public:
 };
 
 int main() {
+    DoublyLinkedList list;
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+    list.push_back(4);
+    list.push_back(5);
 
-    cout << "Every other: ";
+    cout << "Every other: "
     list.every_other_element();
-    
+
     return 0;
 }
