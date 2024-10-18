@@ -226,14 +226,16 @@ public:
             head = tail = nullptr;
         delete temp;
     }
-
+//destructor
     ~DoublyLinkedList() {
+        //until no more nodes
         while (head) {
             Node* temp = head;
             head = head->next;
             delete temp;
         }
     }
+    //print out outputs
     void print() {
         Node* current = head;
         if (!current) {
@@ -246,7 +248,7 @@ public:
         }
         cout << endl;
     }
-
+//print backwards
     void print_reverse() {
         Node* current = tail;
         if (!current) { 
@@ -259,31 +261,42 @@ public:
         }
         cout << endl;
     }
-
+//function to print every other element
     void every_other_element(){
+        //start from head
         Node* current = head;
+        //alternate
         bool skip = false;
+        //while nodes
         while (current) {
+            //check if skip
             if(!skip){
                 cout << current -> data << " ";
             }
+            //alternate
             skip = !skip;
+            //next node
             current = current -> next;
         }
+        //new line
         cout << endl;
     }
 };
 
 int main() {
+    //iniialize
     DoublyLinkedList list;
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
+    //insert numbers to back of list
     list.push_back(1);
     list.push_back(2);
     list.push_back(3);
     list.push_back(4);
     list.push_back(5);
 
+//output
     cout << "Every other: ";
+    //recall to print every other element
     list.every_other_element();
 
     return 0;
